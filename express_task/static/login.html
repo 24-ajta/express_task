@@ -104,13 +104,28 @@
                 password:password.value
             })
         })
-        .then(res=>res.json())
+        .then(res=>{
+          if(res.status === 200){
+            alert("Login Successful")
+            
+            location.href="http://localhost:3000/user.html"
+          }
+   
+        })
         .then(data=>{
             alert(data.msg);
             console.log(data.msg);
             localStorage.setItem("token",data.token);
-            location.href="http://localhost:3000/user.html"
+            // location.href="http://localhost:3000/user.html"
         })
+
+
+        // .then(data=>{
+        //     alert(data.msg);
+        //     console.log(data.msg);
+        //     localStorage.setItem("token",data.token);
+        //     location.href="http://localhost:3000/user.html"
+        // })
         .catch(error=>{
             console.log(error);
         })

@@ -9,7 +9,8 @@ const schema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     password: {
         type: String,
@@ -17,4 +18,4 @@ const schema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model.blogs || mongoose.model("blogs",schema)
+export default mongoose.model.users || mongoose.model("User",schema)

@@ -46,18 +46,18 @@
       </div>
     </nav>
 
-    <h1 style="text-align: center; color:brown; font-size: 42px; "><strong>Register</strong></h1>  
+    <h1 style="text-align: center; color:navy; font-size: 42px; "><strong>Register</strong></h1>  
 
      <div class="container mt-5 ">
       <div class="row no-gutters ">
         <div class="col-lg-6 ms-5" >
-          <img src="images/blog8.jpg" width="650px" height="550px" style="opacity: 0.8;" alt="">
+          <img src="images/how-to-start-a-blog-2.png" width="650px" height="550px" style="opacity: 0.8;" alt="">
         </div>
         <div class="col-lg-6" style=" background-color: white; opacity: 0.95; width:500px;">
           <form onsubmit="register(event)">
             <div class="row mt-3" style="width: 500px;">
             <div class="mb-3 text-center">
-              <h4><span style="color: rgb(116, 73, 15);">Please fill out the details...</span> </h4>
+              <h4><span style="color: rgb(45, 45, 99);">Please fill out the details...</span> </h4>
           </div>
             <div class="mb-3 text-center">
                 <label for="exampleInputText" class="form-label"><span style="color: rgb(62, 62, 156);">Name</span> </label><br>
@@ -76,7 +76,7 @@
             <input type="file" name="image" id="image" ><br>
            </div>
            <div class="mb-3 text-center">
-            <label for="exampleInputText"><span style="color: blue;">For new users</span></label>&nbsp;<input type="submit" value="Register"> <br><br>
+            <label for="exampleInputText"><span style="color: blue;">For new users</span></label>&nbsp;<input style="color: white; background-color: blue;" type="submit" value="Register"> <br><br>
             <label for="exampleInputText"><span style="color: blue;">Already Registered?</span> </label>&nbsp;<button type="submit" class="btn btn-primary"><a href="login.html" style="text-decoration: none; color:white;">Login Here</a></button>
            </div>
             <!-- <input type="submit" value="Register"> -->
@@ -111,8 +111,11 @@
                     alert("Registration Successfull")
                     location.href="http://localhost:3000/login.html"
                 }
+                return res.text();
             })
-           
+           .then(data => {
+            alert(data)
+           })
             .catch(error=>{
                 console.log(error);
             })
