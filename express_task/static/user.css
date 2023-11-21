@@ -1,0 +1,13 @@
+body{
+    background-image: url(images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+.notes{
+    overflow: hidden;
+    background-image: url(images/blogimage.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
