@@ -73,3 +73,30 @@ export async function profile(req, res) {
         res.status(500).send("Error");
     }
 }
+
+export async function uploadFile(req,res){
+    try {
+        let {data,myfile} = req.body
+
+        let result = await fileSchema.create({
+            data,
+            myfile
+        })
+        if(result){
+            return res.json("Blog created Successfully...")
+        }
+    } catch (error) {
+       console.log(error); 
+       return res.status(500).send("error occured")
+    }
+}
+
+export async function getfile(req,res){
+    try {
+        let data = await fileSchema.find();
+        return res.json(data)
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("error occured")
+    }
+}

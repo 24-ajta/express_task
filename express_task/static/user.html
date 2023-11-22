@@ -38,10 +38,9 @@
                 <a class="nav-link disabled"></a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <!-- <form class="d-flex" role="search">
               <button class="btn btn-outline-success" type="submit" > <a href="registration.html" style="text-decoration: none;">Register</a></button>
-              <!-- <button class="btn btn-outline-success" type="submit"><a href="login.html" style="text-decoration: none;">Sign in</a></button> -->
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>
@@ -51,6 +50,7 @@
         <div class="row text-center">
             <form onsubmit="submitHandler(event)">
             <textarea class="notes" name="data" id="data" cols="48" rows="28" placeholder="Create your blog"></textarea><br>
+            <input type="file" name="myfile" id="myfile">
             <input type="submit" style="color: red; background-color: rgb(241, 155, 155); border: none;" value="Create">
         </form>
         </div>
@@ -62,7 +62,13 @@
 <script>
     function submitHandler(event){
         event.preventDefault();
+
         let data=event.target.value;
+        let file=event.target.files;
+        
+        convert(file)
+        .then(base64file=>{
+          console.log(base64file);
          fetch(`http://localhost:3000/api/upload`,{
             method:"post",
             headers:{
@@ -75,10 +81,24 @@
             .then(data=>{
                 alert(data)
             })
+          })
             .catch(error=>{
                 console.log(error);
             })
          })
+    }
+
+    function convert(file){
+      return new Promise((res,rej)=>{
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload=()=>{
+          res(fileReader.result)
+        }
+        fileReader.onerror = (error)=>{
+          rej(error);
+        }
+      })
     }
 </script>
 
