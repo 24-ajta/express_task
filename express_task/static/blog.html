@@ -13,28 +13,68 @@
     <link rel="stylesheet" href="blog.css">
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="images/blogicon.png" width="36px" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav active" aria-current="page" href="#"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav" href="#"></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#"></a></li>
+                  <li><a class="dropdown-item" href="#"></a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#"></a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled"></a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <button class="btn btn-outline-success" type="submit" > <a href="registration.html" style="text-decoration: none;">Register</a></button>
+              <!-- <button class="btn btn-outline-success" type="submit"><a href="login.html" style="text-decoration: none;">Sign in</a></button> -->
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    <h1 style="color: brown;text-align: center;">Blog...............</h1>
+    <!-- <div class="container">
         <div class="content">
             
         </div>
-    </div>
+    </div> -->
 <div id="demo"></div>
 
 <script>
-    fetch("http://localhost:3000/api/get-file")
-    .then((res)=>res.json())
-    .then((data)=>{
-        console.log(data);
-        data.forEach((item)=>{
+         fetch("http://localhost:3000/api/get-file")
+        .then((res) => res.json())
+        .then((data) => {
+       
+          console.log(data);
+          data.forEach((item) => {
             console.log(item);
             let content =
-            `<div>
-               <div class="datas"><p>${item.data}</p></div>     
-                <div class="image"><img src="${item.myfile}"/></div>
-            </div>`
-            document.getElementById("demo").inneHTML+= content;
-        });
-    })
+              `<div class="content">
+                <div class="image"><img src="${item.myfile}" /></div>
+               <div class="notes"><p>${item.data}</p></div>
+               
+                </div>`;
+            document.getElementById("demo").innerHTML += content;
+          });
+        })
 </script>
 
 

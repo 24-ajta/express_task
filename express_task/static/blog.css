@@ -1,3 +1,48 @@
 body{
     background-color: bisque;
 }
+.container{
+    margin: 3rem;
+}
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: solid black;
+    padding: 2rem;
+    /* margin: 8rem; */
+    margin-top: 3rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-bottom: 5rem;
+    gap: 2rem;
+    overflow: hidden;
+    background-image: url(images/contbg5.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+}
+.notes{
+ max-width: 600px;
+ /* overflow: hidden;
+background-image: url(images/contbg3.jpg); 
+background-repeat: no-repeat;
+background-size: cover; */
+} 
+.notes p{
+    max-width: 600px;
+    white-space: pre-wrap;
+}
+.image{
+    
+    margin-left: 0;
+    max-width: 700px;
+    min-height: 400px;
+}
+.image img{
+    max-width: 700px;
+    min-height: 400px;
+    
+}

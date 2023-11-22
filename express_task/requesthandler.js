@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import userSchema from "./schema/user.schema.js";
+import fileSchema from "./schema/file.schema.js";
 
 const { sign } = jwt;
 
@@ -85,6 +86,7 @@ export async function uploadFile(req,res){
         if(result){
             return res.json("Blog created Successfully...")
         }
+        return res.status(500).send("Error Occured")
     } catch (error) {
        console.log(error); 
        return res.status(500).send("error occured")
