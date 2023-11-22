@@ -106,16 +106,16 @@
         })
         .then(res=>{
           if(res.status === 200){
-            alert("Login Successful")
-            
-            location.href="http://localhost:3000/user.html"
+            alert("Login Successful");
+            return res.json();
           }
-   
+          
         })
         .then(data=>{
-            alert(data.msg);
-            console.log(data.msg);
-            localStorage.setItem("token",data.token);
+          alert(data.msg);
+          console.log(data.msg);
+          localStorage.setItem("token",data.token);
+          location.href="http://localhost:3000/user.html"
             // location.href="http://localhost:3000/user.html"
         })
 

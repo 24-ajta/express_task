@@ -61,19 +61,19 @@ export async function login(req, res) {
     }
 }
 
-export async function profile(req, res) {
-    try {
-        let user = req.user;
-        let userDetails = await userSchema.findOne({ _id: user.id },{ password: 0 });
-        if(userDetails) {
-            return res.json(userDetails);
-        }
-        return res.status(404).send("User not found");
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("Error");
-    }
-}
+// export async function profile(req, res) {
+//     try {
+//         let user = req.user;
+//         let userDetails = await userSchema.findOne({ _id: user.id },{ password: 0 });
+//         if(userDetails) {
+//             return res.json(userDetails);
+//         }
+//         return res.status(404).send("User not found");
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send("Error");
+//     }
+// }
 
 export async function uploadFile(req,res){
     try {

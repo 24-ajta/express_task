@@ -66,13 +66,14 @@
    
        let data=event.target[0].value;
        let file = event.target[1].files[0];
+       let token = localStorage.getItem("token");
        convert(file)
        .then(base64file=>{
            console.log(base64file);
            fetch(`http://localhost:3000/api/upload`,{
                method:"post",
                headers:{
-                  // authorization:`Bearer${token}`,
+                  authorization:`Bearer ${token}`,
                    "Content-Type":"application/json"
                },
                body:JSON.stringify({
@@ -83,7 +84,7 @@
            })
            .then(res=>res.text())
            .then(data=>{
-               alert(data)
+               alert(data);
            })
        })
        .catch(error=>{
