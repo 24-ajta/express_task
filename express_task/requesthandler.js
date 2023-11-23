@@ -102,3 +102,14 @@ export async function getfile(req,res){
         return res.status(500).send("error occured")
     }
 }
+
+// export async function logout(req,res){
+//     try {
+//         console.log(req.user);
+        
+//         console.log("logout successfully")
+//     } catch (error) {
+//         console.log(error);
+//         return res.status(500).send("error")
+//     }
+// }

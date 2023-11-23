@@ -46,3 +46,7 @@ background-size: cover; */
     min-height: 400px;
     
 }
+.img {
+    border: solid black;
+    border-radius: 9999px;
+}
