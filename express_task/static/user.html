@@ -38,9 +38,10 @@
                 <a class="nav-link disabled"></a>
               </li>
             </ul>
-            <!-- <form class="d-flex" role="search">
+            <form class="d-flex" role="search">
+              <a href="profile.html"><div class="img" id="img"></div></a>
               <button class="btn btn-outline-success" type="submit" > <a href="registration.html" style="text-decoration: none;">Register</a></button>
-            </form> -->
+            </form>
           </div>
         </div>
       </nav>
@@ -60,13 +61,38 @@
     </div>
 
     <script>
+
+      let token = localStorage.getItem("token");
+
+        fetch("http://localhost:3000/api/get-profile",{
+          method:"get",
+          headers:{
+            authorization:`Bearer ${token}`
+          }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data.msg);
+          if(data.msg){
+            img.innerHTML = data.msg
+            return;
+          }
+          data.forEach(item=>{
+            let profile = 
+            `
+            <div class ="prof">
+              <div class = "dpimg"><img src="${item.file}"/></div>
+            </div>
+            `;
+            document.getElementById("img").innerHTML+=profile;
+          })
+        })
+
+
       function submitHandler(event) {
        event.preventDefault();
-      
-   
        let data=event.target[0].value;
        let file = event.target[1].files[0];
-       let token = localStorage.getItem("token");
        convert(file)
        .then(base64file=>{
            console.log(base64file);

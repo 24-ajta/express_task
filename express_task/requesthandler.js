@@ -9,17 +9,16 @@ const { sign } = jwt;
 
 export async function register(req, res) {
     try {
-        let { username, email,password } = req.body;
+        let { username, email,password,file } = req.body;
         // if( username.length < 4 && password.length < 4) {
         //     return res.json("Invalid username or password");
         // }
-        
+        let hashedPass = await bcrypt.hash(password, 10);
         let userExist = await userSchema.findOne({ username });
         if(userExist) {
             return res.status(400).send("User already exists");
         }
-        let hashedPass = await bcrypt.hash(password, 10);
-        let result = await userSchema.create({ username,email, password: hashedPass });
+        let result = await userSchema.create({ username,email, password: hashedPass,file });
         if(result){
             return res.status(200).send("Registration successful!");
         }
@@ -61,19 +60,20 @@ export async function login(req, res) {
     }
 }
 
-// export async function profile(req, res) {
-//     try {
-//         let user = req.user;
-//         let userDetails = await userSchema.findOne({ _id: user.id },{ password: 0 });
-//         if(userDetails) {
-//             return res.json(userDetails);
-//         }
-//         return res.status(404).send("User not found");
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).send("Error");
-//     }
-// }
+export async function getprofile(req, res) {
+    try {
+        let {id} = req.user;
+        let userDetails = await userSchema.find({ _id:id });
+           console.log(userDetails);
+        if(userDetails.length > 0) {
+            return res.status(200).send(userDetails);
+        }
+        return res.status(404).send("error");
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Error Occured");
+    }
+}
 
 export async function uploadFile(req,res){
     try {

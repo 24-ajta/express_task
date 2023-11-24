@@ -73,7 +73,7 @@
            </div>
            <div class="mb-3 text-center ms-5">
             <!-- <label for="exampleInputText">Choose File</label> -->
-            <input type="file" name="image" id="image" ><br>
+            <input type="file" name="file" id="file" ><br>
            </div>
            <div class="mb-3 text-center">
             <label for="exampleInputText"><span style="color: blue;">For new users</span></label>&nbsp;<input style="color: white; background-color: blue;" type="submit" value="Register"> <br><br>
@@ -88,22 +88,27 @@
      </div>
     
     <script>
-        let username = document.getElementById("username");
-        let password = document.getElementById("password");
-
+     
+        
         function register(event){
             event.preventDefault();
-            let formdata = new FormData(event.target);
+            let username=event.target[0].value;
+            let password=event.target[1].value;
+            let email=event.target[2].value;
+            let file =event.target[3].files[0];
+            console.log(file);
+            convert(file)
+            .then(base64file=>{
             fetch(`http://localhost:3000/api/register`,{
                 method:"post",
-               
                 headers:{
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({
                     username:username.value,
                     email:email.value,
-                    password:password.value
+                    password:password.value,
+                    file:base64file
                 })
             })
             .then(res=>{
@@ -116,10 +121,23 @@
            .then(data => {
             alert(data)
            })
+          })
             .catch(error=>{
                 console.log(error);
             })
         }
+        function convert(file){
+          return new Promise((res,rej)=>{
+              let fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.onload=() =>{
+                  res(fileReader.result)
+              }
+              fileReader.onerror = (error) =>{
+                  rej(error);
+              }
+          })
+      }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
