@@ -11,7 +11,16 @@ body{
     background-size: contain;
     border: none;
 }
-/* .dpimg {
-    border: solid black;
-    border-radius: 9999px;
+h1{
+    font-size: 30px;
+    color: crimson;
+}
+/* .img{
+    border: solid whitesmoke;
+    border-radius: 50%;
 } */
+.dpimg img{
+    border: solid whitesmoke;
+    border-radius: 50%;
+
+}

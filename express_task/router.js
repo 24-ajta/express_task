@@ -18,9 +18,9 @@ const router = Router()
 
 router.route("/register").post(rh.register);
 router.route("/login").post(rh.login);
-// router.route("/profile").get(auth,rh.profile);
+router.route("/profile").get(auth,rh.profile);
 router.route("/upload").post(auth,rh.uploadFile);
 router.route("/get-profile").get(auth,rh.getprofile);
 router.route("/get-file").get(rh.getfile);
-// router.route("/logout").get(auth,rh.logout);
+router.route("/logout").get(auth,rh.logout);
 export default router;
