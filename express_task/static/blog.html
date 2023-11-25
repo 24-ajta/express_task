@@ -44,7 +44,7 @@
             </ul>
             <form class="d-flex" role="search">
               <!-- <div class="img" id="img"></div> -->
-              <button class="btn btn-outline-success" type="submit" onclick="logout(event)">Logout</button>
+              <button class="btn btn-outline-success" type="button" onclick="logout(event)">Logout</button>
               
               <!-- <button class="btn btn-outline-success" type="submit"><a href="login.html" style="text-decoration: none;">Sign in</a></button> -->
             </form>
@@ -82,38 +82,9 @@
         let token= localStorage.getItem("token");
 
         function logout(event){
-        event.preventDefault();
-        fetch("http://localhost:3000/api/logout",{
-            method:"get",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                username:username.value,
-                password:password.value
-            })
-        })
-        .then(res=>{
-          if(res.status === 200){
-            return res.json();
-          }
-          return res.text();
-        })
-        .then(data=>{
-          alert(data.msg || data);
-          console.log(data.msg);
-          if(data.msg){
-          localStorage.removeItem("token",data.token);
+          // event.preventDefault();
+          localStorage.removeItem("token");
           location.href="http://localhost:3000/home.html"
-          }
-          
-          
-        })
-
-
-        .catch(error=>{
-            console.log(error);
-        })
     }
 </script>
 
